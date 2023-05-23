@@ -1,0 +1,64 @@
+import java.util.*;
+public class Que_13 {
+    public static void main(String[] args) {
+        int i, j;
+        System.out.println("Enter total rows and columns: ");
+        Scanner s = new Scanner(System.in);
+        int row = s.nextInt();
+        int column = s.nextInt();
+        int array[][] = new int[row][column];
+        System.out.println("Enter matrix:");
+        for(i = 0; i < row; i++)
+        {
+            for(j = 0; j < column; j++)
+            {
+                array[i][j] = s.nextInt();
+                System.out.print(" ");
+            }
+        }
+        System.out.println("The above matrix before Transpose is ");
+        for(i = 0; i < row; i++)
+        {
+            for(j = 0; j < column; j++)
+            {
+                System.out.print(array[i][j]+" ");
+            }
+            System.out.println(" ");
+        }
+        System.out.println("The above matrix after Transpose is ");
+        for(i = 0; i < column; i++)
+        {
+            for(j = 0; j < row; j++)
+            {
+                System.out.print(array[j][i]+" ");
+            }
+            System.out.println(" ");
+        }
+    }
+}
+
+//*/
+//        import java.io.File;
+//        import java.io.FileNotFoundException;
+//        import java.util.Scanner;
+//
+//public class Que_13 {
+//    public static void main(String[] args) {
+//        try {
+//            File file = new File("filename.txt"); // Replace "filename.txt" with the actual file path
+//            Scanner scanner = new Scanner(file);
+//
+//            int wordCount = 0;
+//            while (scanner.hasNext()) {
+//                scanner.next();
+//                wordCount++;
+//            }
+//
+//            System.out.println("Number of words: " + wordCount);
+//
+//            scanner.close();
+//        } catch (FileNotFoundException e) {
+//            System.out.println("File not found.");
+//        }
+//    }
+//}

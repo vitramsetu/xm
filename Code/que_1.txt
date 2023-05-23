@@ -1,0 +1,72 @@
+1.
+1.1) Program to remove all repeated elements from an array     
+1.2) Write a Java program to find the common elements between two arrays of integers.   
+import java.util.*;
+import java.util.*;
+public class Que_1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter size of the array:");
+        int n = sc.nextInt();
+        int[] array = new int[n];
+        System.out.println("Enter array elements:");
+        for(int i=0;i<n;i++){
+            array[i] = sc.nextInt();
+        }
+        // Sample array with repeated elements
+        //int[] array = { 10, 20, 30, 20, 40, 10, 50 };
+
+        // Convert array to a set to remove duplicates
+        Set<Integer> uniqueElements = new HashSet<>();
+        for (int element : array) {
+            uniqueElements.add(element);
+        }
+
+        // Convert set back to an array without repeated elements
+        int[] arrayWithoutDuplicates = new int[uniqueElements.size()];
+        int index = 0;
+        for (int element : uniqueElements) {
+            arrayWithoutDuplicates[index++] = element;
+        }
+
+        // Print the array without repeated elements
+        System.out.println("Array without repeated elements:");
+        for (int element : arrayWithoutDuplicates) {
+            System.out.print(element + " ");
+        }
+
+        System.out.println();
+
+        // Sample arrays
+        int[] array1 = { 1, 2, 3, 4, 5 };
+        int[] array2 = { 4, 5, 6, 7, 8 };
+
+        // Convert arrays to sets
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> set2 = new HashSet<>();
+
+        for (int element : array1) {
+            set1.add(element);
+        }
+
+        for (int element : array2) {
+            set2.add(element);
+        }
+
+        // Find common elements using retainAll() method
+        set1.retainAll(set2);
+
+        // Convert set to an array of common elements
+        int[] commonElements = new int[set1.size()];
+        index = 0;
+        for (int element : set1) {
+            commonElements[index++] = element;
+        }
+
+        // Print the common elements
+        System.out.println("Common elements:");
+        for (int element : commonElements) {
+            System.out.print(element + " ");
+        }
+    }
+}

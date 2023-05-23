@@ -1,0 +1,79 @@
+import java.util.Scanner;
+public class lab_exam {
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+String str;String arr1[]=new String[10];
+for(int i=0;i<10;i++){
+System.out .println("Enter String: "+i);
+str=sc.next();
+arr1[i]=str;
+char arr[] = str.toCharArray();
+char temp;
+for(int a=0;a<arr.length;a++){
+for (int b=a+1;b<arr.length;b++){
+if (arr[b] < arr[a]) {
+ temp = arr[a];
+arr[a] = arr[b];
+arr[b] = temp;
+}
+}
+}
+System.out .println(arr);
+}
+System.out.println(arr1[0]+" "+arr1[1]);
+String nstr="";
+char ch;
+for (int i=0; i<arr1[0].length(); i++){
+ch= arr1[0].charAt(i);
+nstr= ch+nstr;
+}
+System.out .println("Reversed First String:"+ nstr);
+}
+}
+
+
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Que_17 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read 10 strings from console
+        String[] strings = new String[10];
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Enter string " + (i + 1) + ": ");
+            strings[i] = scanner.nextLine();
+        }
+
+        // Sort the strings
+        Arrays.sort(strings);
+
+        System.out.println("Sorted strings:");
+        for (String str : strings) {
+            System.out.println(str);
+        }
+
+        // Combine two strings
+        System.out.print("Enter first string: ");
+        String firstString = scanner.nextLine();
+        System.out.print("Enter second string: ");
+        String secondString = scanner.nextLine();
+        String combinedString = firstString + secondString;
+        System.out.println("Combined string: " + combinedString);
+
+        // Reverse the first string
+        System.out.println("Enter the string to reverse:");
+
+        String name = scanner.nextLine();
+        String rev = "";
+        for(int i=name.length()-1;i>=0;i--){
+            rev+= name.charAt(i);
+        }
+        System.out.println(rev);
+
+        //scanner.close();
+    }
+}
+
