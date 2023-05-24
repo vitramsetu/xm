@@ -1,0 +1,72 @@
+class AgeNotWithinRangeException extends Exception {
+    public AgeNotWithinRangeException(String message) {
+        super(message);
+    }
+}
+
+class NameNotValidException extends Exception {
+    public NameNotValidException(String message) {
+        super(message);
+    }
+}
+
+class student {
+    private int rollNo;
+    private String name;
+    private int age;
+    private String course;
+
+    public student(int rollNo, String name, int age, String course) throws AgeNotWithinRangeException, NameNotValidException {
+        if (age < 15 || age > 21) {
+            throw new AgeNotWithinRangeException("Age should be between 15 and 21.");
+        }
+
+        if (!isValidName(name)) {
+            throw new NameNotValidException("Name is not valid. It should not contain numbers or special symbols.");
+        }
+
+        this.rollNo = rollNo;
+        this.name = name;
+        this.age = age;
+        this.course = course;
+    }
+
+    private boolean isValidName(String name) {
+        return name.matches("[a-zA-Z ]+");
+    }
+
+    public int getRollNo() {
+        return rollNo;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+}
+
+public class Que_24 {
+    public static void main(String[] args) {
+        try {
+            student student1 = new student(1, "John Doe", 20, "Science");
+            System.out.println("Student 1: Roll No - " + student1.getRollNo() + ", Name - " + student1.getName() +
+                    ", Age - " + student1.getAge() + ", Course - " + student1.getCourse());
+
+            // Invalid age
+            student student2 = new student(2, "Jane Smith", 22, "Arts");
+            System.out.println("Student 2: Roll No - " + student2.getRollNo() + ", Name - " + student2.getName() +
+                    ", Age - " + student2.getAge() + ", Course - " + student2.getCourse());
+        } catch (AgeNotWithinRangeException e) {
+            System.out.println("Error: " + e.getMessage());
+        } catch (NameNotValidException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
