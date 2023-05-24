@@ -1,43 +1,28 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 public class Que_8 {
-    /* input Scanner for reading input for the program */
-    private static Scanner inputScanner;
-    public static void main(String[] args) {
-        /* Create a phone book Map */
-        Map<String, String> phoneBook = new HashMap<String, String>();
-        /* Create the input Scanner instance */
-        inputScanner = new Scanner(System.in);
-        /* Read the number of input phone numbers */
-        System.out.println("Enter the total number of inputs:");
-        int numFriends = inputScanner.nextInt();
-        /* Go to the next line of input */
-        inputScanner.nextLine();
-        /* Loop thru the number of friends, reading the name and phone number, and adding to the phoneBook */
 
-        for (int i = 0; i < numFriends; i++) {
-            System.out.println("Enter name and mobile number: for"+" "+(i+1)+" "+"person:");
-            /* Read the name of the friend */
-            String name = inputScanner.nextLine();
-            /* Read the phone number */
-            String phone = inputScanner.nextLine();
-            /* Put the name and phone number into the phoneBook */
-            phoneBook.put(name, phone);
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        HashMap<String,String>phonebook=new HashMap<>();
+        System.out.println("Number of entries in the phonebook");
+        int num=sc.nextInt();
+        sc.nextLine();
+        System.out.println("entries");
+        for(int i=0;i<num;i++) {
+            String name=sc.nextLine();
+            String phonenumber=sc.nextLine();
+            phonebook.put(name, phonenumber);
         }
-        System.out.println("Enter name to be searched:");
-        /* Loop while there is still more input data */
-        while (inputScanner.hasNext()) {
-            /* Read the person to search for a phone number */
-            String inputName = inputScanner.nextLine();
-            /* Does the name exist in the phone Book */
-            if (phoneBook.containsKey(inputName)) {
-                /* Yes, print out the name and phone number */
-                System.out.println(inputName + "=" + phoneBook.get(inputName));
-            } else {
-                /* Print out error message if not found */
-                System.out.println("Not found");
+        System.out.println("Name to be searched");
+        while(sc.hasNext()) {
+            String inputname=sc.nextLine();
+
+            if(phonebook.containsKey(inputname)) {
+                System.out.println(inputname+"-"+ phonebook.get(inputname));
+            }else {
+                System.out.println("NOT FOUND");
             }
         }
     }
+
 }
