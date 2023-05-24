@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Ques_14 extends JFrame implements ActionListener {
+public class q14 extends JFrame implements ActionListener {
     private JTextField textField;
     private JButton[] numberButtons;
     private JButton addButton, subtractButton, multiplyButton, divideButton, equalButton, clearButton;
@@ -12,7 +12,7 @@ public class Ques_14 extends JFrame implements ActionListener {
     private String firstNumber;
     private String operator;
 
-    public Ques_14() {
+    public q14() {
         // Set up the frame
         setTitle("Calculator");
         setSize(300, 400);
@@ -135,7 +135,7 @@ public class Ques_14 extends JFrame implements ActionListener {
         // Run the GUI on the event dispatch thread
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new Ques_14();
+                new q14();
             }
         });
     }
