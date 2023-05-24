@@ -1,111 +1,45 @@
+//Usually you will require both swing and awt packages
+// even if you are working with just swings.
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 
-public class q9 extends JFrame implements ActionListener {
-    private JTextArea textArea;
-    private JTextField inputField;
-    private JButton sendButton;
-    private JButton resetButton;
+class q9 {
+    public static void main(String args[]) {
 
-    public q9 () {
-        setTitle("File Editor");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 400);
-        setLocationRelativeTo(null);
+        // Creating the Frame
+        JFrame frame = new JFrame("Chat Frame");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 400);
 
-        createMenuBar();
-        createTextArea();
-        createInputField();
-        createButtons();
+        // Creating the MenuBar and adding components
+        JMenuBar mb = new JMenuBar();
+        JMenu m1 = new JMenu("FILE");
+        JMenu m2 = new JMenu("Help");
+        mb.add(m1);
+        mb.add(m2);
+        JMenuItem m11 = new JMenuItem("Open");
+        JMenuItem m22 = new JMenuItem("Save as");
+        m1.add(m11);
+        m1.add(m22);
 
-        setVisible(true);
-    }
+        // Creating the panel at bottom and adding components
+        JPanel panel = new JPanel(); // the panel is not visible in output
+        JLabel label = new JLabel("Enter Text");
+        JTextField tf = new JTextField(10); // accepts upto 10 characters
+        JButton send = new JButton("Send");
+        JButton reset = new JButton("Reset");
+        panel.add(label); // Components Added using Flow Layout
+        panel.add(tf);
+        panel.add(send);
+        panel.add(reset);
 
-    private void createMenuBar() {
-        JMenuBar menuBar = new JMenuBar();
-        JMenu fileMenu = new JMenu("File");
-        JMenuItem saveMenuItem = new JMenuItem("Save");
-        JMenuItem openMenuItem = new JMenuItem("Open");
-        JMenu helpMenu = new JMenu("Help");
+        // Text Area at the Center
+        JTextArea ta = new JTextArea();
 
-        saveMenuItem.addActionListener(this);
-
-        fileMenu.add(saveMenuItem);
-        fileMenu.add(openMenuItem);
-        menuBar.add(fileMenu);
-        menuBar.add(helpMenu);
-
-        setJMenuBar(menuBar);
-    }
-
-    private void createTextArea() {
-        textArea = new JTextArea();
-        JScrollPane scrollPane = new JScrollPane(textArea);
-
-        add(scrollPane, BorderLayout.CENTER);
-    }
-
-    private void createInputField() {
-        JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new BorderLayout());
-
-        inputField = new JTextField();
-
-        inputPanel.add(inputField, BorderLayout.CENTER);
-        add(inputPanel, BorderLayout.SOUTH);
-    }
-
-    private void createButtons() {
-        JPanel buttonPanel = new JPanel();
-        sendButton = new JButton("Send");
-        resetButton = new JButton("Reset");
-
-        sendButton.addActionListener(this);
-        resetButton.addActionListener(this);
-
-        buttonPanel.add(sendButton);
-        buttonPanel.add(resetButton);
-
-        add(buttonPanel, BorderLayout.NORTH);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Save")) {
-            saveToFile();
-        } else if (e.getActionCommand().equals("Send")) {
-            String inputText = inputField.getText();
-            textArea.append(inputText + "\n");
-            inputField.setText("");
-        } else if (e.getActionCommand().equals("Reset")) {
-            textArea.setText("");
-            inputField.setText("");
-        }
-    }
-
-    private void saveToFile() {
-        JFileChooser fileChooser = new JFileChooser();
-        int result = fileChooser.showSaveDialog(this);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            String filePath = fileChooser.getSelectedFile().getAbsolutePath();
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-                writer.write(textArea.getText());
-                writer.flush();
-                JOptionPane.showMessageDialog(this, "File saved successfully.",
-                        "Success", JOptionPane.INFORMATION_MESSAGE);
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(this, "Error saving file: " + e.getMessage(),
-                        "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new q9());
+        // Adding Components to the frame.
+        frame.getContentPane().add(BorderLayout.SOUTH, panel);
+        frame.getContentPane().add(BorderLayout.NORTH, mb);
+        frame.getContentPane().add(BorderLayout.CENTER, ta);
+        frame.setVisible(true);
     }
 }
