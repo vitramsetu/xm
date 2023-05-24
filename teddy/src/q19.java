@@ -1,59 +1,65 @@
-/*interface Account {
-    void set(String name, String accountNumber, double balance);
+import java.util.Scanner;
+// Account interface
+interface Account {
+    void set(String accountNumber, double balance);
     void display();
 }
-
-interface Person {
+// Person interface
+interface Pperson {
     void store(String name);
     void disp();
 }
-
-class Customer implements Account, Person {
+// Customer class implementing Account and Person interfaces
+class Customer implements Account, Pperson {
     private String name;
     private String accountNumber;
     private double balance;
-
     @Override
-    public void set(String name, String accountNumber, double balance) {
-        this.name = name;
+    public void set(String accountNumber, double balance) {
         this.accountNumber = accountNumber;
         this.balance = balance;
     }
-
     @Override
     public void display() {
-        System.out.println("Account Information:");
-        System.out.println("Name: " + name);
         System.out.println("Account Number: " + accountNumber);
-        System.out.println("Balance: " + balance);
+        System.out.println("Balance: $" + balance);
     }
-
     @Override
     public void store(String name) {
         this.name = name;
     }
-
     @Override
     public void disp() {
-        System.out.println("Person Information:");
         System.out.println("Name: " + name);
     }
-
-    public void calculateInterest(double rate) {
-        double interest = balance * rate / 100;
-        System.out.println("Interest: " + interest);
+    public void calculateInterest(double interestRate) {
+        double interest = balance * interestRate / 100;
+        balance += interest;
+        System.out.println("Interest: $" + interest);
+        System.out.println("Updated Balance: $" + balance);
     }
 }
-
-public class Main {
+// Main class
+class q19 {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         Customer customer = new Customer();
-
-        customer.store("John Doe");
-        customer.set("John Doe", "123456789", 5000);
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+        customer.store(name);
+        System.out.print("Enter account number: ");
+        String accountNumber = scanner.nextLine();
+        System.out.print("Enter balance: $");
+        double balance = scanner.nextDouble();
+        scanner.nextLine();
+        customer.set(accountNumber, balance);
+        System.out.println("\nCustomer Information:");
         customer.disp();
         customer.display();
-        customer.calculateInterest(2.5);
+        System.out.print("\nEnter interest rate (%): ");
+        double interestRate = scanner.nextDouble();
+        System.out.println("\nAccount Information with Interest:");
+        customer.calculateInterest(interestRate);
+        scanner.close();
     }
 }
-*/
